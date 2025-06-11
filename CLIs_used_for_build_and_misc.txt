@@ -80,4 +80,9 @@ ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers
 
 
 
+############################################ profile clis #############################################################################################
+perf record -o "perf.data" -F 99 -g -e cpu-cycles,instructions,cycles,cache-misses,branch-misses,context-switches,L1-dcache-loads,L1-dcache-load-misses,LLC-loads,LLC-load-misses --
 
+perf stat -d -- ./bench_ivox
+
+perf report --no-children --stdio --stdio-color never -i "$perfdata" > "$output_file"
